@@ -5,25 +5,33 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, provide, nextTick } from 'vue';
-import PluginConfig from '../../cc-plugin.config';
-import ccui from '@xuyanfeng/cc-ui';
+import { defineComponent, onMounted, ref, provide, nextTick } from "vue";
+import PluginConfig from "../../cc-plugin.config";
+import ccui from "@xuyanfeng/cc-ui";
+import CCP from "cc-plugin/src/ccp/entry-render";
+import { emitter, Msg } from "./emitter";
+import { PluginMcpTool } from "cc-plugin/src/declare";
 const { CCInput, CCButton } = ccui.components;
 export default defineComponent({
-  name: 'index',
+  name: "index",
   components: { CCButton },
   setup(props, { emit }) {
     onMounted(() => {
-      console.log('hi ~~~');
+      console.log("hi ~~~");
     });
     const msg = ref(PluginConfig.manifest.name);
     const count = ref(0);
+    CCP.Adaptation.Panel.sendToMain("self", "getMcpTools", "", () => {});
+    emitter.on(Msg.RecvMcpTools, (data: PluginMcpTool[]) => {
+      debugger;
+      console.log("recv mcp tools", data);
+    });
     return {
       msg,
       count,
       onClickBtn() {
         count.value++;
-        console.log('click btn');
+        console.log("click btn");
       },
     };
   },

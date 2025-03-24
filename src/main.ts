@@ -14,6 +14,10 @@ CCP.init(pluginConfig, {
     showPanel() {
       CCP.Adaptation.Panel.open("self.main");
     },
+    getMcpTools() {
+      const data = JSON.parse(JSON.stringify(mcpTools));
+      CCP.Adaptation.Panel.send("self.main", "onRecvMcpTools", data);
+    },
   },
   mcp: mcpTools,
 });
