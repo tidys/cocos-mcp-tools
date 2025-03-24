@@ -18,5 +18,8 @@ export default CCP.init(pluginConfig, {
     onRecvMcpTools: (event: any, data: PluginMcpTool[]) => {
       emitter.emit(Msg.RecvMcpTools, data);
     },
+    onMcpToolResult: (event: any, data: any) => {
+      emitter.emit(Msg.McpToolResult, data);
+    },
   },
 });

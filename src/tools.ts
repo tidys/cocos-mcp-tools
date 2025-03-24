@@ -25,4 +25,23 @@ export const mcpTools: PluginMcpTool[] = [
       return `${number1}+${number2}=${Number(number1) + Number(number2)}!`;
     },
   },
+  {
+    name: "createPrefab",
+    description: "创建预制体",
+    inputSchema: {
+      type: "object",
+      properties: {
+        name: {
+          type: "string",
+          description: "预制体名称",
+        },
+      },
+      required: ["name"],
+    },
+    callback: async (args: any) => {
+      const { name } = args;
+      await CCP.Adaptation.AssetDB.create(name, "");
+      return "";
+    },
+  },
 ];

@@ -18,6 +18,16 @@ CCP.init(pluginConfig, {
       const data = JSON.parse(JSON.stringify(mcpTools));
       CCP.Adaptation.Panel.send("self.main", "onRecvMcpTools", data);
     },
+    runMcpTool(args: any) {
+      (async () => {
+        const { name, data } = args;
+        const tool = mcpTools.find((t) => t.name === name);
+        if (tool && tool.callback) {
+          const ret = await tool.callback(data);
+          CCP.Adaptation.Panel.send("self.main", "onMcpToolResult", ret);
+        }
+      })();
+    },
   },
   mcp: mcpTools,
 });

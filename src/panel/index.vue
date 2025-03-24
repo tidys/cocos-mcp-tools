@@ -36,8 +36,8 @@
             </div>
           </CCButton>
         </div>
-
         <div class="title">Tool Result:</div>
+        <div>{{ toolResult }}</div>
       </div>
     </div>
     <CCFootBar></CCFootBar>
@@ -68,9 +68,13 @@ export default defineComponent({
         onClickTool(data[0]);
       }
     });
+    emitter.on(Msg.McpToolResult, (data: any) => {
+      toolResult.value = data;
+    });
 
     function onClickTool(data: PluginMcpTool) {
       tool.value = data;
+      toolResult.value = "";
       const p = [];
       for (let key in data.inputSchema.properties) {
         p.push({
@@ -82,8 +86,10 @@ export default defineComponent({
       }
       param.value = p;
     }
+    const toolResult = ref<string>("");
     return {
       msg,
+      toolResult,
       param,
       tools,
       tool,
@@ -97,7 +103,7 @@ export default defineComponent({
             }
             data[item.key] = item.value;
           });
-          console.log(JSON.stringify(data));
+          CCP.Adaptation.Panel.sendToMain("self", "runMcpTool", { name: tool.value.name, data: data }, () => {});
         } catch (e) {
           ccui.footbar.showError(e);
         }
