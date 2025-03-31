@@ -4,31 +4,79 @@ import { existsSync } from "fs";
 
 export const mcpTools: PluginMcpTool[] = [
   {
-    name: "sum",
-    valid: true, // 参考模版接口，默认不生效
-    description: "the sum of two numbers",
+    name: "openPrefab",
+    description: "打开预制体",
     inputSchema: {
       type: "object",
       properties: {
-        number1: {
+        uuid: {
           type: "string",
-          description: "number1",
-        },
-        number2: {
-          type: "string",
-          description: "number1",
+          description: "预制体的uuid",
         },
       },
-      required: ["state"],
+      required: [],
     },
     callback: async (args: any) => {
-      const { number1, number2 } = args;
-      return `${number1}+${number2}=${Number(number1) + Number(number2)}!`;
+      const { uuid } = args;
+      CCP.Adaptation.AssetDB.open(uuid);
+      return `open prefab success`;
+    },
+  },
+  {
+    name: "getPrefabRootNodeUUID",
+    description: "获取打开的预制体的根节点uuid",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+    callback: async (args: any) => {
+      const { uuid } = args;
+      const rootUUID = await CCP.Adaptation.Panel.executeSceneScript<string>("getPrefabRootNodeUUID");
+      return `根节点UUID为: ${rootUUID || ""}`;
+    },
+  },
+  {
+    name: "addSpriteComponent",
+    description: "给节点添加Sprite组件",
+    inputSchema: {
+      type: "object",
+      properties: {
+        nodeUUID: {
+          type: "string",
+          description: "节点的uuid",
+        },
+      },
+      required: [],
+    },
+    callback: async (args: any) => {
+      const { nodeUUID } = args;
+      const ret = await CCP.Adaptation.Panel.executeSceneScript<string>("addSpriteComponent", nodeUUID);
+      return `添加结果：${ret}`;
+    },
+  },
+  {
+    name: "openScene",
+    description: "打开场景",
+    inputSchema: {
+      type: "object",
+      properties: {
+        uuid: {
+          type: "string",
+          description: "场景资源文件的uuid",
+        },
+      },
+      required: [],
+    },
+    callback: async (args: any) => {
+      const { uuid } = args;
+      CCP.Adaptation.AssetDB.open(uuid);
+      return `open scene success`;
     },
   },
   {
     name: "createPrefab",
-    description: "创建预制体",
+    description: "创建空的预制体",
     inputSchema: {
       type: "object",
       properties: {

@@ -9,6 +9,25 @@ async function createEngineNode(name: string) {
   return uuid;
 }
 
+function getPrefabRootNodeUUID() {
+  // scene?prefab?
+  const children = cc.director.getScene().children;
+  // let isPrefab = false;
+  // const d = children.find((el) => el.name === "should_hide_in_hierarchy");
+  // if (d) {
+  //   isPrefab = true;
+  //   return d[0].uuid;
+  // }
+  // 判断是否有关联的预制体即可
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (child._prefab && child._prefab.fileId) {
+      console.log(`prefab fileId: ${child._prefab.fileId}`);
+      return child.uuid;
+    }
+  }
+  return "";
+}
 export const methods = {
   createEngineNode,
   cleanTempNodes() {
@@ -26,4 +45,22 @@ export const methods = {
       }
     }
   },
+  addSpriteComponent(nodeUUID: string) {
+    let node = null;
+    cc.director.getScene().walk((n: any) => {
+      if (n.uuid === nodeUUID) {
+        node = n;
+      }
+    });
+    if (!node) {
+      return "node not found";
+    }
+    if (node.getComponent(cc.Sprite)) {
+      return "node already has sprite component";
+    }
+    // @ts-ignore
+    Editor.Message.request("scene", "create-component", { uuid: nodeUUID, component: "cc.Sprite" });
+    return "success";
+  },
+  getPrefabRootNodeUUID,
 };
