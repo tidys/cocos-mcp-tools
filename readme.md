@@ -6,6 +6,7 @@
 [安装配置cocos-mcp](./readme.zh.md)
 
 目前实现的tools:
+
 ![alt text](./doc/tools.png)
 
 因为cocos creator编辑器的API提供的能力非常弱，需要自己开发很多整套的接口。
