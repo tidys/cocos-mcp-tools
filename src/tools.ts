@@ -48,7 +48,13 @@ export const mcpTools: PluginMcpTool[] = [
       } else {
         const nodeUUID = await CCP.Adaptation.Panel.executeSceneScript<string>("createEngineNode", name);
         const assetUUID = await CCP.Adaptation.AssetDB.createPrefab(url, nodeUUID);
-        return `create prefab success, uuid is ${assetUUID}`;
+        if (assetUUID) {
+          await CCP.Adaptation.Panel.executeSceneScript("cleanTempNodes");
+          return `create prefab success, uuid is ${assetUUID}`;
+        } else {
+          await CCP.Adaptation.Panel.executeSceneScript("cleanTempNodes");
+          return `create prefab failed: ${url}`;
+        }
       }
     },
   },
