@@ -37,7 +37,7 @@
           </CCButton>
         </div>
         <div class="title">Tool Result:</div>
-        <div>{{ toolResult }}</div>
+        <div style="user-select: text">{{ toolResult }}</div>
       </div>
     </div>
     <CCFootBar></CCFootBar>
