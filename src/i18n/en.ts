@@ -1,1 +1,1 @@
-export const title = 'my first plugin'
+export const title = 'mcp-tools'

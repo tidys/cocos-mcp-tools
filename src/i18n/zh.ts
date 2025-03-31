@@ -1,1 +1,1 @@
-export const title = '我的第一个插件'
+export const title = "mcp-tools";
