@@ -33,6 +33,7 @@ cocos-mcp支持开发者开发自己的mcp，接入到AI Clinent中使用，后�
     ![alt text](doc/cline-mcp-config.png)
 
 5. 将如下配置粘贴到cline的mcp配置文件中
+    - 如果你使用的是`npm -g `全局安装，可以使用以下的配置
     ```json
     {
         "mcpServers": {
@@ -46,16 +47,23 @@ cocos-mcp支持开发者开发自己的mcp，接入到AI Clinent中使用，后�
         }
     }
     ```
+    - 如果你的是mac或者没有全局安装，需要使用以下配置
+   ```json
+    {
+        "mcpServers": {
+            "cocos": {
+                "command": "node",
+                "args": [
+                    "npm/global/node_modules/cocos-mcp/dist/index.js"
+                ]
+            }
+        }
+    }
+   ```
 6. 修改完毕后，cline会自动刷新mcp-server，正常情况下如图
     ![alt text](doc/cline-mcp.png)
 
-    如果遇到一下报错，是因为本地端口5395被占用导致
     
-    ![alt text](doc/cline-mcp-error.png)
-    
-    需要结束掉占用5395端口的进程即可
-    
-    ![alt text](doc/find-port.png)
  
 > 这一步的配置只需要配置一次即可，后续不会发生变化。
 
