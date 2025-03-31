@@ -1,5 +1,6 @@
 import CCP from "cc-plugin/src/ccp/entry-main";
 import { PluginMcpTool } from "cc-plugin/src/declare";
+import { existsSync } from "fs";
 
 export const mcpTools: PluginMcpTool[] = [
   {
@@ -40,8 +41,15 @@ export const mcpTools: PluginMcpTool[] = [
     },
     callback: async (args: any) => {
       const { name } = args;
-      await CCP.Adaptation.AssetDB.create(name, "");
-      return "";
+      const url = `db://assets/${name}.prefab`;
+      const fs = CCP.Adaptation.Util.urlToFspath(url);
+      if (fs && existsSync(fs)) {
+        return `prefab ${name} already exists`;
+      } else {
+        const nodeUUID = await CCP.Adaptation.Panel.executeSceneScript<string>("createEngineNode", name);
+        const assetUUID = await CCP.Adaptation.AssetDB.createPrefab(url, nodeUUID);
+        return `create prefab success, uuid is ${assetUUID}`;
+      }
     },
   },
 ];
