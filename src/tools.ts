@@ -23,8 +23,8 @@ export const mcpTools: PluginMcpTool[] = [
     },
   },
   {
-    name: "getPrefabRootNodeUUID",
-    description: "获取打开的预制体的根节点uuid",
+    name: "getOpenPrefabRootNodeUUID",
+    description: "打开预制体后，获取打开的预制体的根节点uuid",
     inputSchema: {
       type: "object",
       properties: {},
@@ -32,7 +32,7 @@ export const mcpTools: PluginMcpTool[] = [
     },
     callback: async (args: any) => {
       const { uuid } = args;
-      const rootUUID = await CCP.Adaptation.Panel.executeSceneScript<string>("getPrefabRootNodeUUID");
+      const rootUUID = await CCP.Adaptation.Panel.executeSceneScript<string>("getOpenPrefabRootNodeUUID");
       return `根节点UUID为: ${rootUUID || ""}`;
     },
   },

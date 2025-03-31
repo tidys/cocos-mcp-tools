@@ -9,7 +9,7 @@ async function createEngineNode(name: string) {
   return uuid;
 }
 
-function getPrefabRootNodeUUID() {
+function getOpenPrefabRootNodeUUID() {
   // scene?prefab?
   const children = cc.director.getScene().children;
   // let isPrefab = false;
@@ -62,5 +62,5 @@ export const methods = {
     Editor.Message.request("scene", "create-component", { uuid: nodeUUID, component: "cc.Sprite" });
     return "success";
   },
-  getPrefabRootNodeUUID,
+  getOpenPrefabRootNodeUUID,
 };
