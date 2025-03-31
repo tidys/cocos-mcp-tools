@@ -1,6 +1,22 @@
 declare const cc: any;
 
 const arr = [];
+export function getSceneInfo() {
+  const scene = cc.director.getScene();
+  const ret = [];
+  function walk(node: any, array: any[]) {
+    const b = ["Editor Scene Background", "Editor Scene Foreground"].find((name) => name === node.name);
+    if (!b) {
+      const item = { name: node.name, children: [] };
+      array.push(item);
+      for (let i = 0; i < node.children.length; i++) {
+        walk(node.children[i], item.children);
+      }
+    }
+  }
+  walk(scene, ret);
+  return JSON.stringify(ret);
+}
 async function createEngineNode(name: string) {
   const node = new cc.Node(name);
   const uuid = node.uuid;
@@ -30,6 +46,7 @@ function getOpenPrefabRootNodeUUID() {
 }
 export const methods = {
   createEngineNode,
+  getSceneInfo,
   cleanTempNodes() {
     if (arr.length === 0) return;
     // 不能缓存节点，因为节点在经过创建预制体后，会发生变化

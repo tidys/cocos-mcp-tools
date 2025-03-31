@@ -4,6 +4,19 @@ import { existsSync } from "fs";
 
 export const mcpTools: PluginMcpTool[] = [
   {
+    name: "get-open-scene-info",
+    description: "get cocos creator open scene info",
+    inputSchema: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+    callback: async () => {
+      const ret = await CCP.Adaptation.Panel.executeSceneScript<string>("getSceneInfo");
+      return ret || "";
+    },
+  },
+  {
     name: "openPrefab",
     description: "打开预制体",
     inputSchema: {
