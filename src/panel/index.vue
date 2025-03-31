@@ -44,19 +44,36 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, provide, nextTick } from "vue";
+import { defineComponent, onMounted, ref, provide, nextTick, toRaw } from "vue";
 import PluginConfig from "../../cc-plugin.config";
 import ccui from "@xuyanfeng/cc-ui";
 import CCP from "cc-plugin/src/ccp/entry-render";
 import { emitter, Msg } from "./emitter";
 import { PluginMcpTool } from "cc-plugin/src/declare";
 import Tool from "./tool.vue";
+import profile from "cc-plugin/src/ccp/profile";
 const { CCInput, CCButton, CCProp, CCInputNumber, CCCheckBox, CCFootBar } = ccui.components;
+
+interface ISaveData {
+  selectedTool: string;
+}
 export default defineComponent({
   name: "index",
   components: { CCButton, Tool, CCProp, CCInput, CCInputNumber, CCCheckBox, CCFootBar },
   setup(props, { emit }) {
+    const saveData: ISaveData = { selectedTool: "" };
+    const defaultSaveData: ISaveData = { selectedTool: "" };
+    profile.init(defaultSaveData, PluginConfig);
+    const data = profile.load(`${PluginConfig.manifest.name}.json`) as ISaveData;
+    saveData.selectedTool = data.selectedTool;
     onMounted(() => {});
+    function getSelectLatestTool() {
+      if (saveData.selectedTool) {
+        const tool = toRaw(tools.value).find((item) => item.name === saveData.selectedTool);
+        return tool || null;
+      }
+      return null;
+    }
     const msg = ref(PluginConfig.manifest.name);
     const tools = ref<PluginMcpTool[]>([]);
     const tool = ref<PluginMcpTool | null>(null);
@@ -65,7 +82,8 @@ export default defineComponent({
     emitter.on(Msg.RecvMcpTools, (data: PluginMcpTool[]) => {
       if (data && Array.isArray(data) && data.length) {
         tools.value = data;
-        onClickTool(data[0]);
+        const latestTool = getSelectLatestTool() || data[0];
+        onClickTool(latestTool);
       }
     });
     emitter.on(Msg.McpToolResult, (data: any) => {
@@ -85,6 +103,8 @@ export default defineComponent({
         });
       }
       param.value = p;
+      saveData.selectedTool = data.name;
+      profile.save(saveData);
     }
     const toolResult = ref<string>("");
     return {
