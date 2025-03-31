@@ -1,12 +1,12 @@
 // @ts-ignore
 import { CocosPluginManifest, CocosPluginOptions, Panel, PluginType } from "cc-plugin/src/declare";
 
-const pkgName = "mcp-tools";
+const pkgName = "cocos-mcp-tools";
 
 const manifest: CocosPluginManifest = {
   name: pkgName,
   version: "1.0.0",
-  description: "mcp-tools",
+  description: "cocos-mcp-tools",
   author: "cc-plugin",
   main: "./src/main.ts",
   panels: [
@@ -15,7 +15,7 @@ const manifest: CocosPluginManifest = {
       valid: true,
       type: Panel.Type.DockAble,
       main: "./src/panel/index.ts",
-      title: "mcp-tools",
+      title: "cocos-mcp-tools",
       width: 700,
       height: 400,
       minWidth: 50,

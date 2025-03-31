@@ -1,1 +1,1 @@
-export const title = 'mcp-tools'
+export const title = "cocos-mcp-tools";

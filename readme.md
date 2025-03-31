@@ -3,7 +3,8 @@
 使用AI指挥cocos creator做游戏，该仓库提供了部分编辑器能力tools的具体实现。
 
 
-[安装配置cocos-mcp](./readme.zh.md)
+- [安装配置cocos-mcp](./readme.zh.md)
+- [编写自己的第一个MCP插件](https://mp.weixin.qq.com/s/Ger1T-iY6h2lQACNEtiErA)
 
 目前实现的tools:
 

@@ -24,7 +24,7 @@ cocos-mcp支持开发者开发自己的mcp，接入到AI Clinent中使用，后�
 ###  第一步：配置支持MCP的AI Client
 
 主流的有cursor、windsurf、vscode等，这里我使用的是`vscode+cline`的组合。
-1. 下载安装nodejs，并全局安装[cocos-mcp](https://www.npmjs.com/package/cocos-mcp)
+1. 下载安装nodejs，并全局安装最新版本的[cocos-mcp](https://www.npmjs.com/package/cocos-mcp)
     > npm i cocos-mcp -g
 2. 下载安装vscode
 3. 在vscode中安装cline插件

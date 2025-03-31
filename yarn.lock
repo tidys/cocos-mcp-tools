@@ -1222,10 +1222,10 @@
   resolved "https://mirrors.cloud.tencent.com/npm/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@xuyanfeng/cc-ui@0.2.34":
-  version "0.2.34"
-  resolved "https://mirrors.cloud.tencent.com/npm/@xuyanfeng/cc-ui/-/cc-ui-0.2.34.tgz#e882e3925841a0a2c414261cd014f0e1c535a3ea"
-  integrity sha512-1sgekM57mM1ntSHAJgtgGeqq/7L67MyUIT00u8/o/26nh+bPXCJOrvp8t7Jxl10qOp8ZYyzHntulqFS6rlAslg==
+"@xuyanfeng/cc-ui@0.2.41":
+  version "0.2.41"
+  resolved "https://registry.npmjs.org/@xuyanfeng/cc-ui/-/cc-ui-0.2.41.tgz#94740beba16fd400cdef19e4fd03ffd64e69b32e"
+  integrity sha512-fhPe0HKQkrEt4GgmKO++NSgEOFToC8Yb+mhk5/uwFL5iFmisjvONblJES538MBBB7UmAE+ymv+uWI7xjsURQbQ==
   dependencies:
     axios "^1.7.2"
     chalk "^5.3.0"
@@ -1960,10 +1960,10 @@ case-sensitive-paths-webpack-plugin@^2.3.0:
   resolved "https://mirrors.cloud.tencent.com/npm/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz#db64066c6422eed2e08cc14b986ca43796dbc6d4"
   integrity sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==
 
-cc-plugin@2.3.0:
-  version "2.3.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/cc-plugin/-/cc-plugin-2.3.0.tgz#2454bc1ce5e0107aca7b6d8d55d8ded9b334fe72"
-  integrity sha512-9pNhMRqLxrYtwRhCEKfiJcNKyj0AkzjwD1YROnnGJReRtZnSL8smZIY1Q1DNdGpfzTWFzD3EUslm6yTKqiVSDA==
+cc-plugin@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.npmjs.org/cc-plugin/-/cc-plugin-2.3.1.tgz#566207a13285a01b4fa86835b196ffc37332355d"
+  integrity sha512-W/cr/37WOLMrhQ4q/SNX9P8G5mVH0F57gLt5hsH9CRcOKIKu7C59cJB5+AdFiyeTH8Er3JrE47ewObqJrpiDIA==
   dependencies:
     "@babel/generator" "^7.16.8"
     "@popperjs/core" "^2.11.6"
