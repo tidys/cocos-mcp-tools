@@ -5,7 +5,7 @@ const pkgName = "cocos-mcp-tools";
 
 const manifest: CocosPluginManifest = {
   name: pkgName,
-  version: "1.0.0",
+  version: "1.0.1",
   description: "cocos-mcp-tools",
   author: "cc-plugin",
   main: "./src/main.ts",
